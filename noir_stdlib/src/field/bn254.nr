@@ -100,6 +100,8 @@ pub fn gt(a: Field, b: Field) -> bool {
         false
     } else {
         let a_lt_b = unsafe {
+            // Safety: We immediately assert the output to be valid based on the if-branch followed.
+            // Using `assert_gt` is sufficient as we've checked for equality already.
             lt_unsafe(a, b, 32)
         };
         if a_lt_b {
