@@ -111,18 +111,20 @@ impl FmtVisitor<'_> {
     }
 
     pub(crate) fn visit_block(&mut self, block: BlockExpression, block_span: Span) {
-        if block.is_empty() {
-            self.visit_empty_block(block_span);
-            return;
-        }
-
-        self.last_position = block_span.start();
-
         if block.is_unsafe {
             self.push_str("unsafe ");
         }
 
-        self.skip_to_opening_brace(&block.statements);
+        self.last_position = block_span.start();
+        self.skip_to_opening_brace();
+
+        if block.is_empty() {
+            // Trim off the start of the block's span which corresponds to "unsafe "
+            let block_span = Span::inclusive(self.last_position, block_span.end() - 1);
+            self.visit_empty_block(block_span);
+            return;
+        }
+
         self.last_position += 1;
         self.push_str("{");
 
@@ -137,12 +139,10 @@ impl FmtVisitor<'_> {
         self.last_position = block_span.end();
     }
 
-    fn skip_to_opening_brace(&mut self, block: &[Statement]) {
-        if let Some(first_stmt) = block.first() {
-            let slice = self.slice(self.last_position..first_stmt.span.start());
-            let len = slice.chars().take_while(|ch| *ch != '{').collect::<String>().len();
-            self.last_position += len as u32;
-        }
+    fn skip_to_opening_brace(&mut self) {
+        let slice = &self.source[self.last_position as usize..self.source.len()];
+        let len = slice.chars().take_while(|ch| *ch != '{').collect::<String>().len();
+        self.last_position += len as u32;
     }
 
     fn trim_spaces_after_opening_brace(&mut self, block: &[Statement]) {
