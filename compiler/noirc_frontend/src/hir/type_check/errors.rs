@@ -132,7 +132,7 @@ pub enum TypeCheckError {
     #[error(
         "Cannot enter unconstrained runtime from constrained function outside of an `unsafe` block"
     )]
-    Unsafe { call_span: Span, function: Ident },
+    UnconstrainedCallOutsideOfUnsafe { call_span: Span, function: Ident },
     #[error("Slices must have constant length")]
     NonConstantSliceLength { span: Span },
     #[error("Only sized types may be used in the entry point to a program")]
@@ -245,8 +245,8 @@ impl From<TypeCheckError> for Diagnostic {
             | TypeCheckError::UnconstrainedSliceReturnToConstrained { span } => {
                 Diagnostic::simple_error(error.to_string(), String::new(), span)
             }
-            TypeCheckError::Unsafe { ref function, call_span } => {
-                Diagnostic::simple_error(error.to_string(), format!(r#"Function "{function}" is unconstrained"#), call_span)
+            TypeCheckError::UnconstrainedCallOutsideOfUnsafe { ref function, call_span } => {
+                Diagnostic::simple_warning(error.to_string(), format!(r#"Function "{function}" is unconstrained"#), call_span)
             }
             TypeCheckError::PublicReturnType { typ, span } => Diagnostic::simple_error(
                 "Functions cannot declare a public return type".to_string(),

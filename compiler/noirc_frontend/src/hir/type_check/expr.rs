@@ -203,7 +203,7 @@ impl<'interner> TypeChecker<'interner> {
                             unreachable!("Call expression must be calling a function");
                         };
 
-                        self.errors.push(TypeCheckError::Unsafe {
+                        self.errors.push(TypeCheckError::UnconstrainedCallOutsideOfUnsafe {
                             call_span: self.interner.expr_span(expr_id),
                             function: self.interner.function_ident(func_id),
                         });
