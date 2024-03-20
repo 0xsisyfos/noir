@@ -19,7 +19,7 @@ impl<T, N> [T; N] {
             for i in 0..N {
                 let pos = find_index(sorted_index, i);
                 assert(sorted_index[pos] == i);
-           }
+            }
 
             sorted_index
         };

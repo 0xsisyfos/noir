@@ -26,7 +26,7 @@ pub fn decompose(x: Field) -> (Field, Field) {
     // Take hints of the decomposition
     let (xlo, xhi) = unsafe {
         let (xlo, xhi) = decompose_unsafe(x);
-    
+
         // Range check the limbs
         xlo.assert_max_bit_size(128);
         xhi.assert_max_bit_size(128);
@@ -37,8 +37,9 @@ pub fn decompose(x: Field) -> (Field, Field) {
         (xlo, xhi)
     };
 
-
-    let borrow = unsafe {lt_unsafe(PLO, xlo, 16)};
+    let borrow = unsafe {
+        lt_unsafe(PLO, xlo, 16)
+    };
 
     // Check that (xlo < plo && xhi <= phi) || (xlo >= plo && xhi < phi)
     let rlo = PLO - xlo + (borrow as Field) * TWO_POW_128;
@@ -78,7 +79,9 @@ pub fn assert_gt(a: Field, b: Field) {
     let (alo, ahi) = decompose(a);
     let (blo, bhi) = decompose(b);
 
-    let borrow = unsafe { lte_unsafe(alo, blo, 16) };
+    let borrow = unsafe {
+        lte_unsafe(alo, blo, 16)
+    };
 
     // Assert that (alo > blo && ahi >= bhi) || (alo <= blo && ahi > bhi)
     let rlo = alo - blo - 1 + (borrow as Field) * TWO_POW_128;
@@ -96,7 +99,9 @@ pub fn gt(a: Field, b: Field) -> bool {
     if a == b {
         false
     } else {
-        let a_lt_b = unsafe {lt_unsafe(a, b, 32) };
+        let a_lt_b = unsafe {
+            lt_unsafe(a, b, 32)
+        };
         if a_lt_b {
             assert_gt(b, a);
             false
@@ -105,8 +110,6 @@ pub fn gt(a: Field, b: Field) -> bool {
             true
         }
     }
-    
-     
 }
 
 pub fn lt(a: Field, b: Field) -> bool {

@@ -116,7 +116,14 @@ impl FmtVisitor<'_> {
             return;
         }
 
-        self.last_position = block_span.start() + 1; // `{`
+        self.last_position = block_span.start();
+
+        if block.is_unsafe {
+            self.push_str("unsafe ");
+        }
+
+        self.skip_to_opening_brace(&block.statements);
+        self.last_position += 1;
         self.push_str("{");
 
         self.trim_spaces_after_opening_brace(&block.statements);
@@ -128,6 +135,14 @@ impl FmtVisitor<'_> {
         let span = (self.last_position..block_span.end() - 1).into();
         self.close_block(span);
         self.last_position = block_span.end();
+    }
+
+    fn skip_to_opening_brace(&mut self, block: &[Statement]) {
+        if let Some(first_stmt) = block.first() {
+            let slice = self.slice(self.last_position..first_stmt.span.start());
+            let len = slice.chars().take_while(|ch| *ch != '{').collect::<String>().len();
+            self.last_position += len as u32;
+        }
     }
 
     fn trim_spaces_after_opening_brace(&mut self, block: &[Statement]) {
