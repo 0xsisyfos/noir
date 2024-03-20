@@ -121,7 +121,7 @@ mod tests {
     use crate::field::bn254::{decompose_unsafe, decompose, lt_unsafe, assert_gt, gt, lt, TWO_POW_128, lte_unsafe, PLO, PHI};
 
     #[test]
-    fn check_decompose_unsafe() {
+    unconstrained fn check_decompose_unsafe() {
         assert_eq(decompose_unsafe(TWO_POW_128), (0, 1));
         assert_eq(decompose_unsafe(TWO_POW_128 + 0x1234567890), (0x1234567890, 1));
         assert_eq(decompose_unsafe(0x1234567890), (0x1234567890, 0));
@@ -135,7 +135,7 @@ mod tests {
     }
 
     #[test]
-    fn check_lt_unsafe() {
+    unconstrained fn check_lt_unsafe() {
         assert(lt_unsafe(0, 1, 16));
         assert(lt_unsafe(0, 0x100, 16));
         assert(lt_unsafe(0x100, TWO_POW_128 - 1, 16));
@@ -143,7 +143,7 @@ mod tests {
     }
 
     #[test]
-    fn check_lte_unsafe() {
+    unconstrained fn check_lte_unsafe() {
         assert(lte_unsafe(0, 1, 16));
         assert(lte_unsafe(0, 0x100, 16));
         assert(lte_unsafe(0x100, TWO_POW_128 - 1, 16));
