@@ -191,16 +191,16 @@ impl<'interner> TypeChecker<'interner> {
 
                 if is_current_func_constrained && is_unconstrained_call {
                     if !self.allow_unsafe {
-                        let HirExpression::Ident(expr::HirIdent { location, id, impl_kind: _ }) =
+                        let HirExpression::Ident(expr::HirIdent { id, .. }) =
                             self.interner.expression(&call_expr.func)
                         else {
-                            panic!("oopsy-woopsy");
+                            unreachable!("Call expression must be calling a function");
                         };
 
                         let Some(DefinitionKind::Function(func_id)) =
                             self.interner.try_definition(id).map(|def| &def.kind)
                         else {
-                            panic!("oopsy-woopsy");
+                            unreachable!("Call expression must be calling a function");
                         };
 
                         self.errors.push(TypeCheckError::Unsafe {
