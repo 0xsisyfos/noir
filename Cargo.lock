@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "acir"
-version = "0.41.0"
+version = "0.42.0"
 dependencies = [
  "acir_field",
  "base64 0.21.2",
@@ -23,7 +23,7 @@ dependencies = [
 
 [[package]]
 name = "acir_field"
-version = "0.41.0"
+version = "0.42.0"
 dependencies = [
  "ark-bls12-381",
  "ark-bn254",
@@ -37,7 +37,7 @@ dependencies = [
 
 [[package]]
 name = "acvm"
-version = "0.41.0"
+version = "0.42.0"
 dependencies = [
  "acir",
  "acvm_blackbox_solver",
@@ -53,7 +53,7 @@ dependencies = [
 
 [[package]]
 name = "acvm_blackbox_solver"
-version = "0.41.0"
+version = "0.42.0"
 dependencies = [
  "acir",
  "blake2",
@@ -88,7 +88,7 @@ dependencies = [
 
 [[package]]
 name = "acvm_js"
-version = "0.41.0"
+version = "0.42.0"
 dependencies = [
  "acvm",
  "bn254_blackbox_solver",
@@ -232,7 +232,7 @@ checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
 
 [[package]]
 name = "arena"
-version = "0.25.0"
+version = "0.26.0"
 
 [[package]]
 name = "ark-bls12-381"
@@ -433,12 +433,13 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
 name = "aztec_macros"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "convert_case 0.6.0",
  "iter-extended",
  "noirc_errors",
  "noirc_frontend",
+ "regex",
 ]
 
 [[package]]
@@ -599,7 +600,7 @@ dependencies = [
 
 [[package]]
 name = "bn254_blackbox_solver"
-version = "0.39.0"
+version = "0.42.0"
 dependencies = [
  "acir",
  "acvm_blackbox_solver",
@@ -622,7 +623,7 @@ dependencies = [
 
 [[package]]
 name = "brillig"
-version = "0.41.0"
+version = "0.42.0"
 dependencies = [
  "acir_field",
  "serde",
@@ -630,7 +631,7 @@ dependencies = [
 
 [[package]]
 name = "brillig_vm"
-version = "0.41.0"
+version = "0.42.0"
 dependencies = [
  "acir",
  "acvm_blackbox_solver",
@@ -1735,7 +1736,7 @@ dependencies = [
 
 [[package]]
 name = "fm"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "codespan-reporting",
  "iter-extended",
@@ -2356,7 +2357,7 @@ dependencies = [
 
 [[package]]
 name = "iter-extended"
-version = "0.25.0"
+version = "0.26.0"
 
 [[package]]
 name = "itertools"
@@ -2655,9 +2656,9 @@ checksum = "2532096657941c2fea9c289d370a250971c689d4f143798ff67113ec042024a5"
 
 [[package]]
 name = "memchr"
-version = "2.5.0"
+version = "2.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
+checksum = "523dc4f511e55ab87b694dc30d0f820d60906ef06413f93d4d7a1385599cc149"
 
 [[package]]
 name = "memmap2"
@@ -2741,7 +2742,7 @@ checksum = "7843ec2de400bcbc6a6328c958dc38e5359da6e93e72e37bc5246bf1ae776389"
 
 [[package]]
 name = "nargo"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "codespan-reporting",
@@ -2768,7 +2769,7 @@ dependencies = [
 
 [[package]]
 name = "nargo_cli"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "assert_cmd",
@@ -2823,7 +2824,7 @@ dependencies = [
 
 [[package]]
 name = "nargo_fmt"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "bytecount",
  "noirc_frontend",
@@ -2835,7 +2836,7 @@ dependencies = [
 
 [[package]]
 name = "nargo_toml"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "dirs",
  "fm",
@@ -2908,7 +2909,7 @@ dependencies = [
 
 [[package]]
 name = "noir_debugger"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "assert_cmd",
@@ -2943,7 +2944,7 @@ dependencies = [
 
 [[package]]
 name = "noir_lsp"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "async-lsp",
@@ -2969,7 +2970,7 @@ dependencies = [
 
 [[package]]
 name = "noir_wasm"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "build-data",
@@ -2992,7 +2993,7 @@ dependencies = [
 
 [[package]]
 name = "noirc_abi"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "iter-extended",
@@ -3009,7 +3010,7 @@ dependencies = [
 
 [[package]]
 name = "noirc_abi_wasm"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "build-data",
@@ -3026,7 +3027,7 @@ dependencies = [
 
 [[package]]
 name = "noirc_driver"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "aztec_macros",
@@ -3047,7 +3048,7 @@ dependencies = [
 
 [[package]]
 name = "noirc_errors"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "base64 0.21.2",
@@ -3065,7 +3066,7 @@ dependencies = [
 
 [[package]]
 name = "noirc_evaluator"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "fxhash",
@@ -3081,7 +3082,7 @@ dependencies = [
 
 [[package]]
 name = "noirc_frontend"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "arena",
@@ -3106,7 +3107,7 @@ dependencies = [
 
 [[package]]
 name = "noirc_printable_type"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "acvm",
  "iter-extended",
@@ -3822,14 +3823,14 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.9.1"
+version = "1.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2eae68fc220f7cf2532e4494aded17545fce192d59cd996e0fe7887f4ceb575"
+checksum = "b62dbe01f0b06f9d8dc7d49e05a0785f153b00b2c227856282f671e0318c9b15"
 dependencies = [
  "aho-corasick",
  "memchr",
- "regex-automata 0.3.3",
- "regex-syntax 0.7.4",
+ "regex-automata 0.4.5",
+ "regex-syntax 0.8.2",
 ]
 
 [[package]]
@@ -3846,10 +3847,16 @@ name = "regex-automata"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39354c10dd07468c2e73926b23bb9c2caca74c5501e38a35da70406f1d923310"
+
+[[package]]
+name = "regex-automata"
+version = "0.4.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5bb987efffd3c6d0d8f5f89510bb458559eab11e4f869acb20bf845e016259cd"
 dependencies = [
  "aho-corasick",
  "memchr",
- "regex-syntax 0.7.4",
+ "regex-syntax 0.8.2",
 ]
 
 [[package]]
@@ -3863,6 +3870,12 @@ name = "regex-syntax"
 version = "0.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e5ea92a5b6195c6ef2a0295ea818b312502c6fc94dde986c5553242e18fd4ce2"
+
+[[package]]
+name = "regex-syntax"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c08c74e62047bb2de4ff487b251e4a92e24f48745648451635cec7d591162d9f"
 
 [[package]]
 name = "region"

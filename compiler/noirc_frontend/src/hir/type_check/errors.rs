@@ -145,6 +145,8 @@ pub enum TypeCheckError {
         method_name: String,
         span: Span,
     },
+    #[error("Strings do not support indexed assignment")]
+    StringIndexAssign { span: Span },
 }
 
 impl TypeCheckError {
@@ -240,9 +242,10 @@ impl From<TypeCheckError> for Diagnostic {
             | TypeCheckError::OverflowingAssignment { span, .. }
             | TypeCheckError::FieldModulo { span }
             | TypeCheckError::ConstrainedReferenceToUnconstrained { span }
-            | TypeCheckError::NonConstantSliceLength { span }
             | TypeCheckError::UnconstrainedReferenceToConstrained { span }
-            | TypeCheckError::UnconstrainedSliceReturnToConstrained { span } => {
+            | TypeCheckError::UnconstrainedSliceReturnToConstrained { span }
+            | TypeCheckError::NonConstantSliceLength { span }
+            | TypeCheckError::StringIndexAssign { span } => {
                 Diagnostic::simple_error(error.to_string(), String::new(), span)
             }
             TypeCheckError::UnconstrainedCallOutsideOfUnsafe { ref function, call_span } => {
