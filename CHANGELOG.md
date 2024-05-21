@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.31.0](https://github.com/noir-lang/noir/compare/v0.30.0...v0.31.0) (2024-05-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **stdlib:** eddsa function using turbofish ([#5050](https://github.com/noir-lang/noir/issues/5050))
+
+### Features
+
+* Add `as_witness` builtin function in order to constrain a witness to be equal to a variable  ([#4641](https://github.com/noir-lang/noir/issues/4641)) ([faf5bd8](https://github.com/noir-lang/noir/commit/faf5bd8ed80fb89b4bb6a2536b9bfa9649579da7))
+* Add native rust implementation of schnorr signature verification ([#5053](https://github.com/noir-lang/noir/issues/5053)) ([fab1c35](https://github.com/noir-lang/noir/commit/fab1c3567d731ea7902635a7a020a8d14f94fd27))
+* Implement turbofish operator ([#3542](https://github.com/noir-lang/noir/issues/3542)) ([226724e](https://github.com/noir-lang/noir/commit/226724e3b54c2e0d9ba005661c76b40a87d9295a))
+* **stdlib:** Eddsa function using turbofish ([#5050](https://github.com/noir-lang/noir/issues/5050)) ([7936262](https://github.com/noir-lang/noir/commit/79362629ed8cf42b6601e9a551ed8f9fe03e0112))
+
+
+### Bug Fixes
+
+* **frontend:** Call trait method with mut self from generic definition ([#5041](https://github.com/noir-lang/noir/issues/5041)) ([89846cf](https://github.com/noir-lang/noir/commit/89846cfbc4961c5258d91b5973f027be80885a20))
+* **frontend:** Correctly monomorphize turbofish functions ([#5049](https://github.com/noir-lang/noir/issues/5049)) ([fd772e7](https://github.com/noir-lang/noir/commit/fd772e7a764004373f5a41a54eb6847f4decda77))
+
 ## [0.30.0](https://github.com/noir-lang/noir/compare/v0.29.0...v0.30.0) (2024-05-20)
 
 
